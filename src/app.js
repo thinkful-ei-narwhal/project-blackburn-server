@@ -1,34 +1,27 @@
-require("dotenv");
-
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
-
 const { NODE_ENV } = require("./config");
+const errorHandler = require("./middleware/error-handler");
+const authRouter = require("./auth/auth-router");
+const languageRouter = require("./language/language-router");
+const userRouter = require("./user/user-router");
 
 const app = express();
 
-const morganOption = NODE_ENV === "production" ? "tiny" : "common";
-
+app.use(
+  morgan(NODE_ENV === "production" ? "tiny" : "common", {
+    skip: () => NODE_ENV === "test",
+  })
+);
 app.use(cors());
 app.use(helmet());
-app.use(morgan(morganOption));
 
-app.get("/", (req, res) => {
-  res.json({ message: "Hello world!" });
-});
+app.use("/api/auth", authRouter);
+app.use("/api/language", languageRouter);
+app.use("/api/user", userRouter);
 
-app.use(function errorMiddleWare(err, req, res, next) {
-  let response;
-  if (NODE_ENV === "production") {
-    response = { error: { message: "Server error" } };
-  } else {
-    console.log(err);
-    response = { error: err, message: err.message };
-  }
-  res.status(500).json({ error: err.message });
-  next();
-});
+app.use(errorHandler);
 
 module.exports = app;
