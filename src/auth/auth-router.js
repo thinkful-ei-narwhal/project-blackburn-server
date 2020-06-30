@@ -8,8 +8,9 @@ const jsonBodyParser = express.json();
 authRouter
   .route("/token")
   .post(jsonBodyParser, async (req, res, next) => {
+    const db = req.app.get("db");
     const { username, password } = req.body;
-    const loginUser = { username, password };
+    const loginUser = { username: username, password: password };
 
     for (const [key, value] of Object.entries(loginUser))
       if (value == null)
@@ -19,7 +20,7 @@ authRouter
 
     try {
       const dbUser = await AuthService.getUserWithUserName(
-        req.app.get("db"),
+        db,
         loginUser.username
       );
 
