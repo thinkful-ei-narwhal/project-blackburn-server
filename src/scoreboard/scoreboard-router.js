@@ -47,12 +47,11 @@ scoreboardRouter.post("/", jsonBodyParser, async (req, res, next) => {
     wpm,
     accuracy,
   };
-  console.log(newScore);
 
   try {
     const postnew = await scoreboardService.postNewScores(db, newScore);
     if (postnew) {
-      return res.status(200).json(postnew);
+      return res.status(201).json(postnew);
     }
     return res.status(400).json({ error: "Score could not be posted" });
   } catch (error) {
