@@ -1,8 +1,6 @@
-CREATE TYPE avatar 
-
-CREATE TABLE "user" (
-  "id" SERIAL PRIMARY KEY,
-  "username" TEXT NOT NULL UNIQUE,
-  "password" VARCHAR(30) NOT NULL,
-  "avatar"  TEXT NOT NULL
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username TEXT NOT NULL UNIQUE,
+ password TEXT NOT NULL,
+  avatar  TEXT NOT NULL
 );

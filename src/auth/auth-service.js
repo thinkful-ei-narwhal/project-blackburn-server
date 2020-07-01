@@ -4,7 +4,7 @@ const config = require("../config");
 
 const AuthService = {
   getUserWithUserName(db, username) {
-    return db("user").where({ username }).first();
+    return db("users").where({ username }).first();
   },
   comparePasswords(password, hash) {
     return bcrypt.compare(password, hash);
