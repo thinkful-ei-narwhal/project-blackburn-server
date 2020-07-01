@@ -27,6 +27,7 @@ scoreboardRouter.get("/", async (req, res, next) => {
       return res.status(201).json(userScores);
     }
 
+
     return res
       .status(400)
       .json({ error: "Something went wrong, please try again later" });
