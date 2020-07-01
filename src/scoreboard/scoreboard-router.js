@@ -8,7 +8,7 @@ const scoreboardRouter = express.Router();
 scoreboardRouter.get("/", async (req, res, next) => {
   const db = req.app.get("db");
   const { userid, request, storyid } = req.query;
-  console.log(userid, request);
+  // console.log(userid, request);
 
   try {
     if (request === "all") {
@@ -27,6 +27,7 @@ scoreboardRouter.get("/", async (req, res, next) => {
 
       return res.status(201).json(userScores);
     }
+
 
     return res
       .status(400)
