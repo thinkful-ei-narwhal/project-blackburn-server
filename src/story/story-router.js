@@ -31,13 +31,6 @@ storyRouter.get("/:story_id", async (req, res, next) => {
   }
 });
 module.exports = storyRouter;
-
-<<<<<<< HEAD
-export default storyRouter;
-
-=======
-module.exports = storyRouter
->>>>>>> deploy
 //start page grabs ALL of story table
 //each INDIVIDUAL story is a GET request for story
 //join tables on every reference key
