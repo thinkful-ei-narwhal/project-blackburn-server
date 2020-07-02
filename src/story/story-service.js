@@ -7,6 +7,7 @@ const StoryService = {
    
 
   getStoryById(db, story_id, difficulty_setting, story_checkpoint_id ) {
+    console.log(difficulty_setting)
     return db 
       .select(
         "story.story_name",
