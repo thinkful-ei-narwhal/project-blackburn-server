@@ -14,11 +14,12 @@ storyRouter.get("/", async (req, res, next) => {
   }
 });
 
-storyRouter.get("/story", async (req, res, next) => {
+storyRouter.get("/:story_id", async (req, res, next) => {
   const db = req.app.get("db");
-  const { story_id, difficulty_id, checkpoint_id } = req.query;
+  const { story_id } = req.params;
+  const { difficulty_id, checkpoint_id } = req.query;
   try {
-    const storyById = StoryService.getStoryById(
+    const storyById = await StoryService.getStoryById(
       db,
       story_id,
       difficulty_id,
@@ -29,8 +30,7 @@ storyRouter.get("/story", async (req, res, next) => {
     next(error);
   }
 });
-
-export default storyRouter;
+module.exports = storyRouter
 
 //start page grabs ALL of story table
 //each INDIVIDUAL story is a GET request for story
