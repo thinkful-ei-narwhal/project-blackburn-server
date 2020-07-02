@@ -19,7 +19,7 @@ storyRouter.get("/:story_id", async (req, res, next) => {
   const { story_id } = req.params;
   const { difficulty_setting, checkpoint_id } = req.query;
   try {
-    const storyById = await StoryService.getStoryById(
+    const storyById = await StoryService.getStoryByCheckpointId(
       db,
       story_id,
       difficulty_setting,
@@ -30,9 +30,21 @@ storyRouter.get("/:story_id", async (req, res, next) => {
     next(error);
   }
 });
+
+storyRouter.get("/checkpoint/:story_id", async (req, res, next) => {
+  const db = req.app.get("db");
+  const { story_id } = req.params;
+  const { difficulty_setting } = req.query;
+  try {
+    const storyById = await StoryService.getStoryById(
+      db,
+      story_id,
+      difficulty_setting,
+    );
+    return res.status(200).json(storyById);
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = storyRouter;
 
-module.exports = storyRouter
-//start page grabs ALL of story table
-//each INDIVIDUAL story is a GET request for story
-//join tables on every reference key
