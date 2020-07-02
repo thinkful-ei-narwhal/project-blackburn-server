@@ -23,7 +23,6 @@ app.use("/api/scoreboard", scoreboardRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/story", storyRouter);
-
 app.use(errorHandler);
 
 module.exports = app;

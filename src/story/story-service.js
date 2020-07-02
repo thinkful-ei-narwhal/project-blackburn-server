@@ -1,13 +1,13 @@
 const StoryService = {
-  //on GET join story_data on all reference keys
 
   getStartPage(db) {
     return db.from("story").select("*");
   },
 
-  getStoryById(db, story_id, difficulty_id, story_checkpoint_id) {
-    console.log(story_id, difficulty_id);
-    return db
+   
+
+  getStoryById(db, story_id, difficulty_setting, story_checkpoint_id ) {
+    return db 
       .select(
         "story.story_name",
         "difficulty.difficulty_setting",
@@ -30,9 +30,9 @@ const StoryService = {
       )
       .leftJoin("difficulty", "story_data.difficulty_id", "=", "difficulty.id")
       .where({ story_id })
-      .andWhere({ difficulty_id })
-      .andWhere({ story_checkpoint_id });
+      .andWhere({ difficulty_setting })
+      .andWhere({ story_checkpoint_id })
   },
-};
+}
 
-module.exports = StoryService;
+module.exports = StoryService
