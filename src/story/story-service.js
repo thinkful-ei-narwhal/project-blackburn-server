@@ -9,8 +9,7 @@ const StoryService = {
 
    
 
-  getStoryById(db, story_id, difficulty_id, story_checkpoint_id ) {
-    console.log(story_id, difficulty_id)
+  getStoryById(db, story_id, difficulty_setting, story_checkpoint_id ) {
     return db 
       .select(
         'story.story_name',
@@ -29,11 +28,9 @@ const StoryService = {
       .leftJoin('story_checkpoint', 'story_data.story_checkpoint_id', '=', 'story_checkpoint.id')
       .leftJoin('difficulty', 'story_data.difficulty_id', '=', 'difficulty.id')
       .where({ story_id })
-      .andWhere({ difficulty_id })
+      .andWhere({ difficulty_setting })
       .andWhere({ story_checkpoint_id })
   },
-
-
 }
 
 module.exports = StoryService
