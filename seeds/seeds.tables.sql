@@ -1,10 +1,10 @@
 BEGIN;
 
 TRUNCATE
-users,
-scoreboard;
+user,
+-- scoreboard;
 
-INSERT INTO users (id, username, password, avatar)
+INSERT INTO user (id, username, password, avatar)
 VALUES
   (
     1, 
@@ -13,9 +13,9 @@ VALUES
     'Red mage'
   );
 
-  INSERT INTO scoreboard (id, user_id, story_id, difficulty_id, score, wpm, accuracy)
-  VALUES
-  (123, 1, 'detective', 'easy', 75, 150, 25),
-  (124, 1, 'monster', 'easy', 65, 112, 50);
+  -- INSERT INTO scoreboard (id, user_id, story_id, difficulty_id, score, wpm, accuracy)
+  -- VALUES
+  -- (123, 1, 'detective', 'easy', 75, 150, 25),
+  -- (124, 1, 'monster', 'easy', 65, 112, 50);
   
   COMMIT;
