@@ -14,9 +14,10 @@ storyRouter.get("/", async (req, res, next) => {
   }
 });
 
-storyRouter.get("/story", async (req, res, next) => {
+storyRouter.get("/:story_id", async (req, res, next) => {
   const db = req.app.get("db");
-  const { story_id, difficulty_id, checkpoint_id } = req.query;
+  const { story_id } = req.params;
+  const { difficulty_id, checkpoint_id } = req.query;
   try {
     const storyById = StoryService.getStoryById(
       db,

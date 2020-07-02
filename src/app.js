@@ -21,6 +21,7 @@ app.use(helmet());
 app.use("/api/scoreboard", scoreboardRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
+app.use("/api/story");
 
 app.use(errorHandler);
 
