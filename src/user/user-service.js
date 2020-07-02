@@ -18,9 +18,9 @@ const UserService = {
   },
   updateUser(db, id, updateUser) {
     return db('users')
-      .where('users.id', id)
+      .where({ id })
       .update(updateUser)
-      .returning(['username', 'avatar']);
+      .returning(['id', 'username', 'avatar']);
   },
   validatePassword(password) {
     if (password.length < 8) {

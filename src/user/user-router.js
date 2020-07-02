@@ -57,12 +57,11 @@ userRouter
           error: `Missing '${key}' in request body`,
         });
     updateUser.id = req.user.id;
-    console.log('hello', updateUser.id, req.user.id);
     UserService.updateUser(req.app.get('db'), req.user.id, updateUser)
       .then((user) => {
         res.status(201).json(user);
       })
-      .catch(next);
+      .catch((err) => next(err));
   });
 
 module.exports = userRouter;
