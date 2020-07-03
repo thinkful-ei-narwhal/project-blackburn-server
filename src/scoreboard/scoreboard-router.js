@@ -27,7 +27,6 @@ scoreboardRouter.get("/", async (req, res, next) => {
       return res.status(201).json(userScores);
     }
 
-
     return res
       .status(400)
       .json({ error: "Something went wrong, please try again later" });
@@ -38,14 +37,20 @@ scoreboardRouter.get("/", async (req, res, next) => {
 
 scoreboardRouter.post("/", jsonBodyParser, async (req, res, next) => {
   const db = req.app.get("db");
-  const { user_id, story_id, difficulty_id, score, wpm, accuracy } = req.body;
+  const {
+    user_id,
+    story_id,
+    difficulty_id,
+    score,
+    // wpm, accuracy
+  } = req.body;
   const newScore = {
     user_id,
     story_id,
     score,
     difficulty_id,
-    wpm,
-    accuracy,
+    // wpm,
+    // accuracy,
   };
 
   try {
