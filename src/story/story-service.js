@@ -19,7 +19,9 @@ const StoryService = {
         "story_checkpoint.checkpoint_name",
         "story_checkpoint.story_art",
         "story_checkpoint.story_text",
-        "story_checkpoint.gameplay_art"
+        "story_checkpoint.gameplay_art",
+        "story_checkpoint.music"
+        "story_checkpoint.dictionary_string"
       )
       .from("story_data")
       .join("story", "story_data.story_id", "=", "story.id")
