@@ -21,6 +21,8 @@ const StoryService = {
         "story_checkpoint.checkpoint_name",
         "story_checkpoint.story_art",
         "story_checkpoint.story_text",
+        "story_checkpoint.win_text",
+        "story_checkpoint.lose_text",
         "story_checkpoint.gameplay_art",
         "story_checkpoint.music",
         "story_checkpoint.dictionary_string"
