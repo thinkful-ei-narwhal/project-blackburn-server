@@ -1,12 +1,16 @@
 const StoryService = {
-
   getStartPage(db) {
     return db.from("story").select("*");
   },
 
-  getStoryByCheckpointId(db, story_id, difficulty_setting, story_checkpoint_id ) {
-    console.log(difficulty_setting)
-    return db 
+  getStoryByCheckpointId(
+    db,
+    story_id,
+    difficulty_setting,
+    story_checkpoint_id
+  ) {
+    console.log(difficulty_setting);
+    return db
       .select(
         "story.story_name",
         "difficulty.difficulty_setting",
@@ -17,7 +21,11 @@ const StoryService = {
         "story_checkpoint.checkpoint_name",
         "story_checkpoint.story_art",
         "story_checkpoint.story_text",
+        "story_checkpoint.win_text",
+        "story_checkpoint.lose_text",
         "story_checkpoint.gameplay_art",
+        "story_checkpoint.music",
+        "story_checkpoint.dictionary_string"
       )
       .from("story_data")
       .join("story", "story_data.story_id", "=", "story.id")
@@ -30,12 +38,11 @@ const StoryService = {
       .leftJoin("difficulty", "story_data.difficulty_id", "=", "difficulty.id")
       .where({ story_id })
       .andWhere({ difficulty_setting })
-      .andWhere({ story_checkpoint_id })
-      
+      .andWhere({ story_checkpoint_id });
   },
-  getStoryById(db, story_id, difficulty_setting ) {
-    console.log(difficulty_setting)
-    return db 
+  getStoryById(db, story_id, difficulty_setting) {
+    console.log(difficulty_setting);
+    return db
       .select(
         "story.story_name",
         "difficulty.difficulty_setting",
@@ -59,8 +66,8 @@ const StoryService = {
       )
       .leftJoin("difficulty", "story_data.difficulty_id", "=", "difficulty.id")
       .where({ story_id })
-      .andWhere({ difficulty_setting })      
+      .andWhere({ difficulty_setting });
   },
-}
+};
 
-module.exports = StoryService
+module.exports = StoryService;
