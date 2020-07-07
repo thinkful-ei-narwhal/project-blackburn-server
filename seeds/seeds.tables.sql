@@ -26,7 +26,7 @@ INSERT INTO story_checkpoint (id, checkpoint_name, story_art, story_text, win_te
 VALUES
   (1, 'detective beat 1', 'https://image.shutterstock.com/z/stock-photo-coffee-detective-hat-pipe-gun-and-handcuffs-220822777.jpg', 'Coffee. The fuel of civilization. With it, we''ve built the modern world: cell phones, computers, the Statue of Liberty. I doubt any inventor produced an ounce of thought uncaffeinated. Without that ancient bean, everything falls apart. Societies, workplaces, marriages. Most mornings.
   
-  You take a sip and peruse the latest case on my desk. The fourth pawn shop this week got hit. Once per day since Monday. This time the owner lost his life as well as his jewelry. Same gang, with the same strange masks. They are getting braver. It''s Thursday, and you doubt the punks are inclined to take the weekend off, so neither could you.
+  You take a sip and peruse the latest case on your desk. The fourth pawn shop this week got hit. Once per day since Monday. This time the owner lost his life as well as his jewelry. Same gang, with the same strange masks. They are getting braver. It''s Thursday, and you doubt the punks are inclined to take the weekend off, so neither could you.
   
   There''s never enough coffee. 
 
