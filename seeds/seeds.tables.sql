@@ -20,11 +20,11 @@ VALUES
 INSERT INTO story (id, story_name, story_thumbnail, story_synopsis)
 VALUES (1, 'detective', 'google.com', 'whodunnit? butler prob');
   
-INSERT INTO story_checkpoint (id, checkpoint_name, story_art, story_text, gameplay_art)
+INSERT INTO story_checkpoint (id, checkpoint_name, story_art, story_text, gameplay_art, music, dictionary_string)
 VALUES
-  (1, 'The Call', 'google.com', 'The phone rings. You pick up the reciever it press it to your ear.  On the other line, a breathy voice asks you to find a man known only as the vvolf.  What a dumb name.  You start your research', 'google.com'),
-  (2, 'Noir Streets', 'google.com', 'Through your research you find a real name, Duane Reade.  You take to the foggy streets and start asking your usual contacts if they have heard of such a man.  Most point you to the pharmacy, but one man, a homeless man with a missing leg, tells you he knows something about the person.', 'google.com'),
-  (3, 'The Chase', 'google.com', 'Your contact tells you about a run down warehouse at a closed off dock. You decide to not waste any time and head over there immediately.  You break through the run down gate, draw your snub-nose revolver and sneak into the warehouse.  There you find Mr.Reade making illegal Aspirin capsule to sell at his own knock-off pharmacy at discounted rates.  A true monster... maybe thats why they call him the vvolf.  You order him to put up his hands, but he runs away.', 'google.com');
+  (1, 'The Call', 'google.com', 'The phone rings. You pick up the reciever it press it to your ear.  On the other line, a breathy voice asks you to find a man known only as the vvolf.  What a dumb name.  You start your research', 'google.com', 'bensound-enigmatic.mp3', 'animals'),
+  (2, 'Noir Streets', 'google.com', 'Through your research you find a real name, Duane Reade.  You take to the foggy streets and start asking your usual contacts if they have heard of such a man.  Most point you to the pharmacy, but one man, a homeless man with a missing leg, tells you he knows something about the person.', 'google.com', 'bensound-badass.mp3', 'animals'),
+  (3, 'The Chase', 'google.com', 'Your contact tells you about a run down warehouse at a closed off dock. You decide to not waste any time and head over there immediately.  You break through the run down gate, draw your snub-nose revolver and sneak into the warehouse.  There you find Mr.Reade making illegal Aspirin capsule to sell at his own knock-off pharmacy at discounted rates.  A true monster... maybe thats why they call him the vvolf.  You order him to put up his hands, but he runs away.', 'google.com', 'bensound-theduel.mp3', 'animals');
 
 INSERT INTO story_data (id, story_id, story_checkpoint_id, difficulty_id)
 VALUES
