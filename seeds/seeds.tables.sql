@@ -56,7 +56,13 @@ VALUES
   (6, 1, 2, 3),
   (7, 1, 3, 1),
   (8, 1, 3, 2),
-  (9, 1, 3, 3);
+  (9, 1, 3, 3),
+  (10, 1, 4, 1),
+  (11, 1, 4, 2),
+  (12, 1, 4, 3),
+  (13, 1, 5, 1),
+  (14, 1, 5, 2),
+  (15, 1, 5, 3);
 
 INSERT INTO user_stats (id, user_id, story_data, total_score, avg_wpm, total_accuracy)
 VALUES
