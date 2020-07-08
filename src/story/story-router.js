@@ -31,6 +31,22 @@ storyRouter.get("/:story_id", async (req, res, next) => {
   }
 });
 
+storyRouter.get("/checkpoint/all/:checkpoint_name", async (req, res, next) => {
+  const db = req.app.get("db");
+
+  const { checkpoint_name } = req.params;
+
+  try {
+    const storyByCheckpointName = await StoryService.getAllStoriesByCheckpointName(
+      db,
+      checkpoint_name
+    );
+    return res.status(200).json(storyByCheckpointName);
+  } catch (error) {
+    next(error);
+  }
+});
+
 storyRouter.get("/checkpoint/:story_id", async (req, res, next) => {
   const db = req.app.get("db");
   const { story_id } = req.params;
@@ -39,7 +55,7 @@ storyRouter.get("/checkpoint/:story_id", async (req, res, next) => {
     const storyById = await StoryService.getStoryById(
       db,
       story_id,
-      difficulty_setting,
+      difficulty_setting
     );
     return res.status(200).json(storyById);
   } catch (error) {
@@ -47,4 +63,3 @@ storyRouter.get("/checkpoint/:story_id", async (req, res, next) => {
   }
 });
 module.exports = storyRouter;
-
