@@ -54,7 +54,9 @@ const StoryService = {
         "story_checkpoint.story_art",
         "story_checkpoint.story_text",
         "story_checkpoint.gameplay_art",
-        "story_checkpoint.id"
+        "story_checkpoint.id",
+        "story_checkpoint.music",
+        "story_checkpoint.dictionary_string"
       )
       .from("story_data")
       .join("story", "story_data.story_id", "=", "story.id")
@@ -67,6 +69,13 @@ const StoryService = {
       .leftJoin("difficulty", "story_data.difficulty_id", "=", "difficulty.id")
       .where({ story_id })
       .andWhere({ difficulty_setting });
+  },
+  getAllStoriesByCheckpointName(db, checkpoint_name) {
+    return db("story_checkpoint")
+      .select("*")
+      .where({ checkpoint_name })
+      .like(`${checkpoint_name}%`)
+      .orderBy("checkpoint_name", "asc");
   },
 };
 
