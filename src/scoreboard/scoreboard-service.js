@@ -23,21 +23,22 @@ const scoreboardService = {
   getMaxScoreByDate(db, user_id) {
     return db.raw(
       `SELECT 
-      date_trunc('day', date_created), 
-      max(total_score) 
+      date_trunc('day', date_created)
       from user_stats
       WHERE user_id = ${user_id}
-      GROUP BY 1`
+      GROUP BY date_trunc('day', date_created)
+     `
       )
+
   },
   getMaxWpmByDate(db, user_id) {
     return db.raw(
       `SELECT 
-      date_trunc('day', date_created), 
+      date_trunc('day', date_created),
       max(avg_wpm) 
       from user_stats
       WHERE user_id = ${user_id}
-      GROUP BY 1`
+      GROUP BY date_trunc('day', date_created)`
       )
   },
   postNewScores(db, newScore) {
