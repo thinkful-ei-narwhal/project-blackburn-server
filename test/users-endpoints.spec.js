@@ -42,6 +42,7 @@ describe("User Endpoints", function () {
             expect(res.body).to.not.have.property("password");
           });
       });
+
       it(`stores the new user in db with bcryped password`, () => {
         const newUser = {
           username: "test username",
