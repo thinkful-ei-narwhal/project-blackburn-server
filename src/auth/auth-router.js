@@ -1,21 +1,21 @@
-const express = require('express');
-const AuthService = require('./auth-service');
-const { requireAuth } = require('../middleware/jwt-auth');
+const express = require("express");
+const AuthService = require("./auth-service");
+const { requireAuth } = require("../middleware/jwt-auth");
 
 const authRouter = express.Router();
 const jsonBodyParser = express.json();
 
 authRouter
-  .route('/token')
+  .route("/token")
   .post(jsonBodyParser, async (req, res, next) => {
-    const db = req.app.get('db');
+    const db = req.app.get("db");
     const { username, password } = req.body;
     const loginUser = { username: username, password: password };
 
     for (const [key, value] of Object.entries(loginUser))
       if (value == null)
         return res.status(400).json({
-          error: `Missing '${key}' in request body`,
+          error: `Missing ${key} in request body`,
         });
 
     try {
@@ -26,7 +26,7 @@ authRouter
 
       if (!dbUser)
         return res.status(400).json({
-          error: 'Incorrect username or password',
+          error: "Incorrect username or password",
         });
 
       const compareMatch = await AuthService.comparePasswords(
@@ -36,7 +36,7 @@ authRouter
 
       if (!compareMatch)
         return res.status(400).json({
-          error: 'Incorrect username or password',
+          error: "Incorrect username or password",
         });
 
       const sub = dbUser.username;

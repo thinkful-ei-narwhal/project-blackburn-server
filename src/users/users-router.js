@@ -1,16 +1,16 @@
-const express = require('express');
-const path = require('path');
-const UserService = require('./user-service');
-const { requireAuth } = require('../middleware/jwt-auth');
+const express = require("express");
+const path = require("path");
+const UserService = require("./users-service");
+const { requireAuth } = require("../middleware/jwt-auth");
 
 const userRouter = express.Router();
 const jsonBodyParser = express.json();
 
 userRouter
-  .post('/', jsonBodyParser, async (req, res, next) => {
+  .post("/", jsonBodyParser, async (req, res, next) => {
     const { password, username, avatar } = req.body;
 
-    for (const field of ['username', 'password'])
+    for (const field of ["username", "password"])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`,
@@ -22,7 +22,7 @@ userRouter
       if (passwordError) return res.status(400).json({ error: passwordError });
 
       const hasUserWithUserName = await UserService.hasUserWithUserName(
-        req.app.get('db'),
+        req.app.get("db"),
         username
       );
 
@@ -37,7 +37,7 @@ userRouter
         avatar,
       };
 
-      const user = await UserService.insertUser(req.app.get('db'), newUser);
+      const user = await UserService.insertUser(req.app.get("db"), newUser);
 
       res
         .status(201)
@@ -47,7 +47,7 @@ userRouter
       next(error);
     }
   })
-  .patch('/edit', requireAuth, jsonBodyParser, (req, res, next) => {
+  .patch("/edit", requireAuth, jsonBodyParser, (req, res, next) => {
     const { username, avatar } = req.body;
     const updateUser = { username, avatar };
 
@@ -57,8 +57,8 @@ userRouter
           error: `Missing '${key}' in request body`,
         });
     updateUser.id = req.user.id;
-    console.log('hello', updateUser.id, req.user.id);
-    UserService.updateUser(req.app.get('db'), req.user.id, updateUser)
+    console.log("hello", updateUser.id, req.user.id);
+    UserService.updateUser(req.app.get("db"), req.user.id, updateUser)
       .then((user) => {
         res.status(201).json(user);
       })

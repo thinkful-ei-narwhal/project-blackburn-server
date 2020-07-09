@@ -7,10 +7,12 @@ function makeUsersArray() {
     {
       username: "test-user-1",
       password: "password",
+      avatar: "Red mage",
     },
     {
       username: "test-user-2",
       password: "password",
+      avatar: "Red mage",
     },
   ];
 }
@@ -18,29 +20,15 @@ function makeUsersArray() {
 function makeKnexInstance() {
   return knex({
     client: "pg",
-    connection: process.env.TEST_DATABASE_URL,
+    connection: process.env.DATABASE_TEST_URL,
   });
 }
 
 function cleanTables(db) {
   return db.transaction((trx) =>
-    trx
-      .raw(
-        `TRUNCATE
-        "word",
-        "language",
-        "user"`
-      )
-      .then(() =>
-        Promise.all([
-          trx.raw(`ALTER SEQUENCE word_id_seq minvalue 0 START WITH 1`),
-          trx.raw(`ALTER SEQUENCE language_id_seq minvalue 0 START WITH 1`),
-          trx.raw(`ALTER SEQUENCE user_id_seq minvalue 0 START WITH 1`),
-          trx.raw(`SELECT setval('word_id_seq', 0)`),
-          trx.raw(`SELECT setval('language_id_seq', 0)`),
-          trx.raw(`SELECT setval('user_id_seq', 0)`),
-        ])
-      )
+    trx.raw(
+      "TRUNCATE users, difficulty, story, story_checkpoint, story_data, user_stats RESTART IDENTITY CASCADE"
+    )
   );
 }
 
@@ -50,11 +38,11 @@ function seedUsers(db, users) {
     password: bcrypt.hashSync(user.password, 1),
   }));
   return db.transaction(async (trx) => {
-    await trx.into("user").insert(preppedUsers);
+    await trx.into("users").insert(preppedUsers);
 
-    await trx.raw(`SELECT setval('user_id_seq', ?)`, [
-      users[users.length - 1].id,
-    ]);
+    // await trx.raw(`SELECT setval('id_seq', ?)`, [
+    //   users[users.length - 1].id,
+    // ]);
   });
 }
 

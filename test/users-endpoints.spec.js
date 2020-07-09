@@ -3,6 +3,7 @@ const app = require("../src/app");
 const helpers = require("./test-helpers");
 const supertest = require("supertest");
 const { expect } = require("chai");
+const knex = require("knex");
 
 describe("User Endpoints", function () {
   let db;
@@ -11,7 +12,10 @@ describe("User Endpoints", function () {
   const testUser = testUsers[0];
 
   before("make knex instance", () => {
-    db = helpers.makeKnexInstance();
+    db = knex({
+      client: "pg",
+      connection: process.env.DATABASE_TEST_URL,
+    });
     app.set("db", db);
   });
 
@@ -21,18 +25,18 @@ describe("User Endpoints", function () {
 
   afterEach("cleanup", () => helpers.cleanTables(db));
 
-  describe(`POST /api/users`, () => {
+  describe("POST /api/users", () => {
     beforeEach("insert users", () => helpers.seedUsers(db, testUsers));
 
-    describe(`Given a valid user`, () => {
-      it(`responds 201, serialized user with no password`, () => {
+    describe("Given a valid user", () => {
+      it("responds 201, serialized user with no password", () => {
         const newUser = {
           username: "mytestuser",
           password: "Password1!",
           avatar: "Red Mage",
         };
         return supertest(app)
-          .post("api/user")
+          .post("/api/users")
           .send(newUser)
           .expect(201)
           .expect((res) => {
@@ -43,7 +47,7 @@ describe("User Endpoints", function () {
           });
       });
 
-      it(`stores the new user in db with bcryped password`, () => {
+      it("stores the new user in db with bcrypted password", () => {
         const newUser = {
           username: "test username",
           password: "11AAaa!!",
@@ -54,18 +58,14 @@ describe("User Endpoints", function () {
           .send(newUser)
           .expect((res) =>
             db
-              .from("user")
-              .select("*")
+              .from("users")
               .where({ id: res.body.id })
-              .first()
               .then((row) => {
                 expect(row.username).to.eql(newUser.username);
                 expect(row.name).to.eql(newUser.name);
-
-                return bcrypt.compare(newUser.password, row.password);
-              })
-              .then((compareMatch) => {
-                expect(compareMatch).to.be.true;
+                expect(bcrypt.compare(newUser.password, row.password)).to.be
+                  .true;
+                return;
               })
           );
       });
