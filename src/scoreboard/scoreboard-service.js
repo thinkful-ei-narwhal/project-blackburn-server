@@ -20,6 +20,26 @@ const scoreboardService = {
   getUserScores(db, user_id) {
     return db("user_stats").where({ user_id });
   },
+  getMaxScoreByDate(db, user_id) {
+    return db.raw(
+      `SELECT 
+      date_trunc('day', date_created), 
+      max(total_score) 
+      from user_stats
+      WHERE user_id = ${user_id}
+      GROUP BY 1`
+      )
+  },
+  getMaxWpmByDate(db, user_id) {
+    return db.raw(
+      `SELECT 
+      date_trunc('day', date_created), 
+      max(avg_wpm) 
+      from user_stats
+      WHERE user_id = ${user_id}
+      GROUP BY 1`
+      )
+  },
   postNewScores(db, newScore) {
     return db.insert(newScore).into("user_stats").returning("id");
   },
