@@ -30,13 +30,9 @@ scoreboardRouter.get("/", async (req, res, next) => {
       const id = userid;
       const userScores = await scoreboardService.getMaxScoreByDate(db, id);
       const userWPM = await scoreboardService.getMaxWpmByDate(db, id);
-
+      console.log(userScores)
       return res.status(201).json({score: userScores.rows, wpm: userWPM.rows});
     }    
-      return res
-        .status(201)
-        .json({ score: userScores.rows[0], wpm: userWPM.rows[0] });
-    }
     return res
       .status(400)
       .json({ error: "Something went wrong, please try again later" });
