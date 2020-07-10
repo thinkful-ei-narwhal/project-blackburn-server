@@ -7,7 +7,7 @@ const UserService = {
     return db
       .from('users')
       .where('users.id', id)
-      .select('users.username', 'users.avatar')
+      .select('users.id', 'users.username', 'users.avatar')
       .first();
   },
   hasUserWithUserName(db, username) {
