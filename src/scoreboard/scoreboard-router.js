@@ -13,26 +13,22 @@ scoreboardRouter.get("/", async (req, res, next) => {
     if (request === "all") {
       const allScores = await scoreboardService.getAllScores(db);
 
-      return res.status(201).json(allScores);
-    }
-    if (request === "story") {
-      const storyScore = await scoreboardService.getStoryScore(db, storyid);
-
-      return res.status(201).json(storyScore);
+      return res.status(200).json(allScores);
     }
     if (request === "myscores") {
       const id = userid;
       const userScores = await scoreboardService.getUserScores(db, id);
 
-      return res.status(201).json(userScores);
+      return res.status(200).json(userScores);
     }
     if (request === "sortdate") {
       const id = userid;
       const userScores = await scoreboardService.getMaxScoreByDate(db, id);
       const userWPM = await scoreboardService.getMaxWpmByDate(db, id);
-      console.log(userScores)
-      return res.status(201).json({score: userScores.rows, wpm: userWPM.rows});
-    }    
+      return res
+        .status(200)
+        .json({ score: userScores.rows, wpm: userWPM.rows });
+    }
     return res
       .status(400)
       .json({ error: "Something went wrong, please try again later" });
@@ -49,7 +45,7 @@ scoreboardRouter.post("/", jsonBodyParser, async (req, res, next) => {
     total_score,
     avg_wpm,
     total_accuracy,
-  } = req.body.data;
+  } = req.body;
   const newScore = {
     user_id,
     story_data,
@@ -60,10 +56,11 @@ scoreboardRouter.post("/", jsonBodyParser, async (req, res, next) => {
 
   try {
     const postnew = await scoreboardService.postNewScores(db, newScore);
-    if (postnew) {
-      return res.status(201).json(postnew);
+    if (!postnew) {
+      return res.status(400).json({ error: "Score could not be posted" });
     }
-    return res.status(400).json({ error: "Score could not be posted" });
+
+    return res.status(201).json(postnew);
   } catch (error) {
     next(error);
   }
