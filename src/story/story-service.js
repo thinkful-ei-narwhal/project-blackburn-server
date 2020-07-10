@@ -9,7 +9,6 @@ const StoryService = {
     difficulty_setting,
     story_checkpoint_id
   ) {
-    console.log(difficulty_setting);
     return db
       .select(
         "story.story_name",
@@ -41,7 +40,6 @@ const StoryService = {
       .andWhere({ story_checkpoint_id });
   },
   getStoryById(db, story_id, difficulty_setting) {
-    console.log(difficulty_setting);
     return db
       .select(
         "story.story_name",

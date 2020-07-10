@@ -9,5 +9,3 @@ module.exports = {
       : process.env.DATABASE_URL,
   ssl: !!process.env.SSL,
 };
-
-console.log("TESTING ", process.env.DATABASE_TEST_URL);
