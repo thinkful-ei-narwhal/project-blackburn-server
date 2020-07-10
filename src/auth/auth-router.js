@@ -1,14 +1,14 @@
-const express = require("express");
-const AuthService = require("./auth-service");
-const { requireAuth } = require("../middleware/jwt-auth");
+const express = require('express');
+const AuthService = require('./auth-service');
+const { requireAuth } = require('../middleware/jwt-auth');
 
 const authRouter = express.Router();
 const jsonBodyParser = express.json();
 
 authRouter
-  .route("/token")
+  .route('/token')
   .post(jsonBodyParser, async (req, res, next) => {
-    const db = req.app.get("db");
+    const db = req.app.get('db');
     const { username, password } = req.body;
     const loginUser = { username: username, password: password };
 
@@ -26,7 +26,7 @@ authRouter
 
       if (!dbUser)
         return res.status(400).json({
-          error: "Incorrect username or password",
+          error: 'Incorrect username or password',
         });
 
       const compareMatch = await AuthService.comparePasswords(
@@ -36,7 +36,7 @@ authRouter
 
       if (!compareMatch)
         return res.status(400).json({
-          error: "Incorrect username or password",
+          error: 'Incorrect username or password',
         });
 
       const sub = dbUser.username;
@@ -55,11 +55,9 @@ authRouter
 
   .put(requireAuth, (req, res) => {
     const sub = req.user.username;
-    const av = req.user.avatar;
 
     const payload = {
       user_id: req.user.id,
-      avatar: av,
     };
     res.send({
       authToken: AuthService.createJwt(sub, payload),
