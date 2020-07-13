@@ -224,6 +224,14 @@ function seedStats(db, testStats) {
   });
 }
 
+function makeAuthHeader(user, secret = config.JWT_TOKEN) {
+  const token = jwt.sign({ user_id: user.id }, secret, {
+    subject: user.user_name,
+    algorithm: "HS256",
+  });
+  return `Bearer ${token}`;
+}
+
 module.exports = {
   makeUsersArray,
   makeStoryFixtures,
@@ -234,5 +242,6 @@ module.exports = {
   makeExpectedStoryCheckpoint,
   makeExpectedStoryCheckpointWithId,
   makeStatsFixtures,
+  makeAuthHeader,
   seedStats,
 };
