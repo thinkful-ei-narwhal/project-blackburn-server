@@ -4,12 +4,12 @@ const helpers = require("./test-helpers");
 const supertest = require("supertest");
 const { expect } = require("chai");
 const knex = require("knex");
+require("dotenv").config();
 
 describe("User Endpoints", function () {
   let db;
 
   const testUsers = helpers.makeUsersArray();
-  const testUser = testUsers[0];
 
   before("make knex instance", () => {
     db = knex({
@@ -54,7 +54,7 @@ describe("User Endpoints", function () {
           name: "test name",
         };
         return supertest(app)
-          .post("/api/user")
+          .post("/api/users")
           .send(newUser)
           .expect((res) =>
             db
@@ -68,6 +68,34 @@ describe("User Endpoints", function () {
                 return;
               })
           );
+      });
+    });
+
+    describe("PATCH /api/users", () => {
+      beforeEach("insert users", () => helpers.seedUsers(db, testUsers));
+      it.only("Patches an existing user in db", () => {
+        const patchUser = {
+          username: "ChunkChuck",
+          avatar: "Red Mage",
+        };
+        return supertest(app)
+          .patch("/api/users/edit")
+          .set(
+            "Authorization",
+            helpers.makeAuthHeader({
+              id: 1,
+              username: "test-user-1",
+              password: "password",
+              avatar: "Red mage",
+            })
+          )
+          .send(patchUser)
+          .expect(201);
+        // .then((res) => {
+        //   expect(res.username).to.eql(patchUser.username);
+        //   expect(res.avatar).to.eql(patchUser.avatar);
+        //   return;
+        // });
       });
     });
   });

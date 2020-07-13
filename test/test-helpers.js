@@ -118,6 +118,19 @@ function makeStoryDataArray() {
   ];
 }
 
+function makeStatsFixtures() {
+  return [
+    {
+      id: 1,
+      user_id: 1,
+      story_data: 1,
+      total_score: 150,
+      avg_wpm: 3,
+      total_accuracy: 50,
+    },
+  ];
+}
+
 function makeStoryFixtures() {
   const testStory = makeStoryArray();
   const testDifficulty = makeDifficultyArray();
@@ -205,6 +218,20 @@ function makeExpectedStoryCheckpointWithId(story, difficulty, checkpoint) {
   };
 }
 
+function seedStats(db, testStats) {
+  return db.transaction(async (trx) => {
+    await trx.into("user_stats").insert(testStats);
+  });
+}
+
+function makeAuthHeader(user, secret = config.JWT_TOKEN) {
+  const token = jwt.sign({ user_id: user.id }, secret, {
+    subject: user.user_name,
+    algorithm: "HS256",
+  });
+  return `Bearer ${token}`;
+}
+
 module.exports = {
   makeUsersArray,
   makeStoryFixtures,
@@ -214,4 +241,7 @@ module.exports = {
   makeExpectedStory,
   makeExpectedStoryCheckpoint,
   makeExpectedStoryCheckpointWithId,
+  makeStatsFixtures,
+  makeAuthHeader,
+  seedStats,
 };
