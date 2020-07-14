@@ -26,6 +26,7 @@ const scoreboardService = {
       from user_stats
       WHERE user_id = ${user_id}
       GROUP BY date_trunc('day', date_created)
+      ORDER BY date_trunc('day', date_created);
      `
     );
   },
@@ -36,7 +37,9 @@ const scoreboardService = {
       max(avg_wpm) 
       from user_stats
       WHERE user_id = ${user_id}
-      GROUP BY date_trunc('day', date_created)`
+      GROUP BY date_trunc('day', date_created)
+      ORDER BY date_trunc('day', date_created);
+      `
     );
   },
   postNewScores(db, newScore) {
