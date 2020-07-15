@@ -77,7 +77,7 @@ IFLOSE initiated<br/>
 Sys fault<br/>
 >Failure<br/>
 >Failure<br/>
->Fai--------------<br/>', 'https://www.gamereactor.eu/media/75/duskers_1827533.jpg', 'badass', 'dictstring'),
+>Fai--------------<br/>', 'https://www.gamereactor.eu/media/75/duskers_1827533.jpg', 'badass', 'drone'),
   (12, 'drone beat 2', 'https://lh3.googleusercontent.com/proxy/fKdxhBFyODjyWXXofZLu0IMZSyqP04-Gk6ELtC4QJjH6AbIVF7Ff7ABj2U4nGyHKCfrx1nC1yS_dmkUYGPMH11artC9YlDSlc_4JsSRC03xZ0n2C7dIEDrrY', '>Testing: Hello operator<br/>
 >No targets detected<br/>
 >Vessel detected: class eE53-cruiser<br/>
@@ -114,7 +114,7 @@ IFLOSE initiated<br/>
 Sys fault<br/>
 >Failure<br/>
 >Failure<br/>
->Fai---------------------<br/>', 'https://game-wisdom.com/wp-content/uploads/2015/08/Duskers.jpg', 'music', 'dictstring'),
+>Fai---------------------<br/>', 'https://game-wisdom.com/wp-content/uploads/2015/08/Duskers.jpg', 'badass', 'done'),
   (13, 'drone beat 3', 'https://www.rockpapershotgun.com/images/16/may/duskers_may23_1.jpg/RPSS/thumbnail/1920x1080/format/jpg/quality/75', '>Testing: Hello operator<br/>
 >ERROR: eCore err 3817TZ<br/>
 >scan_self eCore_all<br/>
@@ -159,7 +159,7 @@ Sys fault<br/>
 >Failure<br/>
 >Failure<br/>
 >Fai---------------------<br/>
-', 'https://i0.wp.com/killscreen.com/wp-content/uploads/sites/2/2016/05/alien.jpg?resize=784%2C677&ssl=1', 'music', 'dictstring');
+', 'https://i0.wp.com/killscreen.com/wp-content/uploads/sites/2/2016/05/alien.jpg?resize=784%2C677&ssl=1', 'badass', 'drone');
 
 INSERT INTO story_data (id, story_id, story_checkpoint_id, difficulty_id)
 VALUES
