@@ -114,7 +114,7 @@ IFLOSE initiated<br/>
 Sys fault<br/>
 >Failure<br/>
 >Failure<br/>
->Fai---------------------<br/>', 'https://game-wisdom.com/wp-content/uploads/2015/08/Duskers.jpg', 'house', 'done'),
+>Fai---------------------<br/>', 'https://game-wisdom.com/wp-content/uploads/2015/08/Duskers.jpg', 'house', 'drone'),
   (13, 'drone beat 3', 'https://www.rockpapershotgun.com/images/16/may/duskers_may23_1.jpg/RPSS/thumbnail/1920x1080/format/jpg/quality/75', '>Testing: Hello operator<br/>
 >ERROR: eCore err 3817TZ<br/>
 >scan_self eCore_all<br/>
