@@ -9,7 +9,7 @@ story_data,
 user_stats;
 
 INSERT INTO users (id, username, password, avatar)
-VALUES (1, 'testuser','$2a$10$fCWkaGbt7ZErxaxclioLteLUgg4Q3Rp09WW0s/wSLxDKYsaGYUpjG','Red mage');
+VALUES (1, 'testuser','$2a$10$fCWkaGbt7ZErxaxclioLteLUgg4Q3Rp09WW0s/wSLxDKYsaGYUpjG','/images/man.png');
 
 INSERT INTO difficulty (id, difficulty_setting, word_length, max_screen_words, word_expiration_timer, level_timer, word_gen_timer)
 VALUES
