@@ -55,8 +55,6 @@ userRouter
   .patch("/edit", requireAuth, jsonBodyParser, (req, res, next) => {
     const { username, avatar } = req.body;
     const updateUser = { username, avatar };
-    console.log("TESTING");
-    console.log("TESTING ", updateUser.id);
     for (const [key, value] of Object.entries(updateUser))
       if (value === null)
         return res.status(400).json({

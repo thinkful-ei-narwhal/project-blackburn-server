@@ -1,19 +1,19 @@
-const knex = require('knex');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const config = require('../src/config');
+const knex = require("knex");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("../src/config");
 
 function makeUsersArray() {
   return [
     {
-      username: 'test-user-1',
-      password: 'password',
-      avatar: 'Red mage',
+      username: "test-user-1",
+      password: "password",
+      avatar: "Red mage",
     },
     {
-      username: 'test-user-2',
-      password: 'password',
-      avatar: 'Red mage',
+      username: "test-user-2",
+      password: "password",
+      avatar: "Red mage",
     },
   ];
 }
@@ -22,21 +22,21 @@ function makeStoryArray() {
   return [
     {
       id: 1,
-      story_name: 'The Pawn Shop Punks',
-      story_thumbnail: 'image1',
-      story_synopsis: 'story syn 1',
+      story_name: "The Pawn Shop Punks",
+      story_thumbnail: "image1",
+      story_synopsis: "story syn 1",
     },
     {
       id: 2,
-      story_name: 'Monster Hunter',
-      story_thumbnail: 'image2',
-      story_synopsis: 'story syn 2',
+      story_name: "Monster Hunter",
+      story_thumbnail: "image2",
+      story_synopsis: "story syn 2",
     },
     {
       id: 3,
-      story_name: 'The Drone',
-      story_thumbnail: 'image3',
-      story_synopsis: 'story syn 3',
+      story_name: "The Drone",
+      story_thumbnail: "image3",
+      story_synopsis: "story syn 3",
     },
   ];
 }
@@ -45,7 +45,7 @@ function makeDifficultyArray() {
   return [
     {
       id: 1,
-      difficulty_setting: 'easy',
+      difficulty_setting: "easy",
       word_length: 5,
       max_screen_words: 5,
       word_expiration_timer: 20,
@@ -54,7 +54,7 @@ function makeDifficultyArray() {
     },
     {
       id: 2,
-      difficulty_setting: 'medium',
+      difficulty_setting: "medium",
       word_length: 10,
       max_screen_words: 10,
       word_expiration_timer: 10,
@@ -63,7 +63,7 @@ function makeDifficultyArray() {
     },
     {
       id: 3,
-      difficulty_setting: 'hard',
+      difficulty_setting: "hard",
       word_length: 20,
       max_screen_words: 20,
       word_expiration_timer: 5,
@@ -77,36 +77,36 @@ function makeCheckpointArray() {
   return [
     {
       id: 1,
-      checkpoint_name: 'beat 1',
-      story_art: 'https://image.shutterstock.com',
-      story_text: 'storyText1',
-      win_text: 'win1',
-      lose_text: 'lose1',
-      gameplay_art: 'https://art',
-      music: 'music',
-      dictionary_string: 'animals',
+      checkpoint_name: "beat 1",
+      story_art: "https://image.shutterstock.com",
+      story_text: "storyText1",
+      win_text: "win1",
+      lose_text: "lose1",
+      gameplay_art: "https://art",
+      music: "music",
+      dictionary_string: "animals",
     },
     {
       id: 2,
-      checkpoint_name: 'beat 2',
-      story_art: 'https://storyart',
-      story_text: 'storyText2',
-      win_text: 'win2',
-      lose_text: 'lose2',
-      gameplay_art: 'https://art',
-      music: 'music',
-      dictionary_string: 'duqs',
+      checkpoint_name: "beat 2",
+      story_art: "https://storyart",
+      story_text: "storyText2",
+      win_text: "win2",
+      lose_text: "lose2",
+      gameplay_art: "https://art",
+      music: "music",
+      dictionary_string: "duqs",
     },
     {
       id: 3,
-      checkpoint_name: 'beat 3',
-      story_art: 'https://storyart',
-      story_text: 'storyText3',
-      win_text: 'win3',
-      lose_text: 'lose3',
-      gameplay_art: 'https://art',
-      music: 'music',
-      dictionary_string: 'gucks',
+      checkpoint_name: "beat 3",
+      story_art: "https://storyart",
+      story_text: "storyText3",
+      win_text: "win3",
+      lose_text: "lose3",
+      gameplay_art: "https://art",
+      music: "music",
+      dictionary_string: "gucks",
     },
   ];
 }
@@ -143,7 +143,7 @@ function makeStoryFixtures() {
 function cleanTables(db) {
   return db.transaction((trx) =>
     trx.raw(
-      'TRUNCATE users, difficulty, story, story_checkpoint, story_data, user_stats RESTART IDENTITY CASCADE'
+      "TRUNCATE users, difficulty, story, story_checkpoint, story_data, user_stats RESTART IDENTITY CASCADE"
     )
   );
 }
@@ -154,7 +154,7 @@ function seedUsers(db, users) {
     password: bcrypt.hashSync(user.password, 1),
   }));
   return db.transaction(async (trx) => {
-    await trx.into('users').insert(preppedUsers);
+    await trx.into("users").insert(preppedUsers);
 
     // await trx.raw(`SELECT setval('id_seq', ?)`, [
     //   users[users.length - 1].id,
@@ -164,10 +164,10 @@ function seedUsers(db, users) {
 
 function seedStories(db, story, difficulty, checkpoints, storyData) {
   return db.transaction(async (trx) => {
-    await trx.into('difficulty').insert(difficulty);
-    await trx.into('story').insert(story);
-    await trx.into('story_checkpoint').insert(checkpoints);
-    await trx.into('story_data').insert(storyData);
+    await trx.into("difficulty").insert(difficulty);
+    await trx.into("story").insert(story);
+    await trx.into("story_checkpoint").insert(checkpoints);
+    await trx.into("story_data").insert(storyData);
   });
 }
 
@@ -221,16 +221,15 @@ function makeExpectedStoryCheckpointWithId(story, difficulty, checkpoint) {
 
 function seedStats(db, testStats) {
   return db.transaction(async (trx) => {
-    await trx.into('user_stats').insert(testStats);
+    await trx.into("user_stats").insert(testStats);
   });
 }
 
 function makeAuthHeader(user, secret = config.JWT_SECRET) {
   const token = jwt.sign({ user_id: user.id }, secret, {
     subject: user.username,
-    algorithm: 'HS256',
+    algorithm: "HS256",
   });
-  console.log(token);
   return `Bearer ${token}`;
 }
 
