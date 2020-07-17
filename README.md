@@ -42,10 +42,10 @@ GET all scores for a story: /api/scoreboard?request=story&storyid=detective
 POST requests take in user_id (int), story_id (str), score (int), difficulty_id (str), wpm (int), accuracy (int)
  
 # Screen shots
-<img src="Screenshots/frontpage.png" width="500">
-<img src="screenshots/storypage.png" width="500">
-<img src="screenshots/storycheckpoint.png" width="500">
-<img src="screenshots/gameplay.png" width="500">
+<img src="./src/Screenshots/frontpage.png" width="500">
+<img src="./src/Screenshots/storypage.png" width="500">
+<img src="./src/Screenshots/storycheckpoint.png" width="500">
+<img src="./src/Screenshots/gameplay.png" width="500">
 
 # Summary
 Whether to increase your typing accuracy or speed, everyone could
