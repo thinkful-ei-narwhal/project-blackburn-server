@@ -57,22 +57,5 @@ storyRouter.get("/checkpoint/:story_id", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-
-  // storyRouter.get("/checkpoint/all/:checkpoint_name", async (req, res, next) => {
-  //   const db = req.app.get("db");
-  //   const { checkpoint_name } = req.params;
-  //   try {
-  //     const storyByCheckpointName = await StoryService.getAllStoriesByCheckpointName(
-  //       db,
-  //       checkpoint_name
-  //     );
-  //     if (storyByCheckpointName.length === 0) {
-  //       return res.status(404).json({ error: "Story doesn't exist" });
-  //     }
-  //     return res.status(200).json(storyByCheckpointName);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // });
 });
 module.exports = storyRouter;
